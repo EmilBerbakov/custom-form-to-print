@@ -1,0 +1,50 @@
+<form
+  cdkDropList
+  class="example-list"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div
+    class="example-box"
+    *ngFor="let formField of formFields?.controls; let i = index"
+    cdkDrag
+    id="dataToPrint"
+    [ngClass]="i === formFields.length - 1 ? 'bottom-box': null"
+  >
+    <mat-form-field class="field-width" style="justify-content: start;">
+
+      <div style="justify-self: start;" [id]="'formFieldLabel' + i">
+      <mat-label> Form Field {{i+1}}</mat-label>         
+      <button [matMenuTriggerFor]="menu" (click)="editTitle(i)" mat-icon-button color="primary" id="dataToNotPrint">
+      <mat-icon>edit</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <div mat-menu-item>
+          <!-- This form's value will set the innerText of the mat-label -->
+          <!-- Thinking about using valueChanges subscription to just set the innerText-->
+          <mat-form-field>
+            <input matInput/>
+          </mat-form-field>
+        </div>
+      </mat-menu>
+
+      </div>   
+      <input matInput disabled />
+    </mat-form-field>
+    <button mat-icon-button color="warn" (click)="deleteField(i)" id="dataToNotPrint" style="justify-self: center;" *ngIf="formFields?.length > 1">
+      <mat-icon>cancel</mat-icon>
+    </button>
+
+  </div>
+  <div class="row-container button-row" id="dataToNotPrint">
+    <button (click)="addField()" mat-mini-fab color="accent">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button (click)="print()" mat-mini-fab color="primary">
+      <mat-icon>print</mat-icon>
+    </button>
+  </div>
+</form>
+
+<!-- Copyright 2023 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->
