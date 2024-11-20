@@ -47,6 +47,7 @@ export class CdkDragDropSortingExample implements OnInit {
   }
 
   editTitle(index: number): void {
+    //! Actually, you'd probably want to use a model for the value of the input that changes the name of the input added, and then use that in the template
     //TODO - get the div we're in, grab the innerText of the mat-label within the div, change the innerText
     // The form in the menu will have a generated name of formFieldEdit${index}, so we'll either subscribe to the valueChanges of the form and change the label in real time,
     // or we'll grab the input value when they close the menu
